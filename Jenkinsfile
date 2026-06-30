@@ -3,17 +3,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Récupération du code depuis Git...'
+                checkout scm
             }
         }
         stage('Build Docker Image') {
             steps {
-                echo 'Construction de l\'image Docker...'
+                sh 'docker build -f docker/Dockerfile -t app-devops .'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Déploiement de l\'application...'
+                sh '''
+                    docker stop app-devops-container || true
+                    docker rm app-devops-container || true
+                    docker run -d -p 8080:8000 --name app-devops-container app-devops
+                '''
             }
         }
     }

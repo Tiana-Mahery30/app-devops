@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get("/", response_class=HTMLResponse)
 def home():
-    version = "1.0.3"
+    version = "1.0.4"
     heure = datetime.datetime.now().strftime("%H:%M:%S")
     date = datetime.datetime.now().strftime("%d/%m/%Y")
 

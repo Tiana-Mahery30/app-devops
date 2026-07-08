@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get("/", response_class=HTMLResponse)
 def home():
-    version = "1.0.5"
+    version = "v1.0.0"
     heure = datetime.datetime.now().strftime("%H:%M:%S")
     date = datetime.datetime.now().strftime("%d/%m/%Y")
 
@@ -15,36 +15,36 @@ def home():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Dashboard</title>
+    <title>CI/CD Pipeline</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         
         :root {{
-            --bg: #0b0f1a;
-            --surface: #141b2d;
-            --surface2: #1a2340;
-            --border: #2a3a5c;
-            --text: #e8edf5;
-            --text2: #8899bb;
-            --text3: #4a5a7a;
-            --primary: #4f8cf7;
-            --primary-glow: rgba(79, 140, 247, 0.15);
-            --green: #2ecc71;
-            --green-glow: rgba(46, 204, 113, 0.15);
-            --orange: #f39c12;
+            --bg: #0f0f1a;
+            --surface: #1a1a2e;
+            --surface2: #252540;
+            --border: #3a3a5c;
+            --text: #e8e8f0;
+            --text2: #8888aa;
+            --text3: #555577;
+            --primary: #ff6b6b;
+            --primary-glow: rgba(255, 107, 107, 0.15);
+            --green: #51cf66;
+            --green-glow: rgba(81, 207, 102, 0.15);
+            --orange: #ffa94d;
             --radius: 16px;
-            --shadow: 0 20px 60px rgba(0,0,0,0.5);
+            --shadow: 0 20px 60px rgba(0,0,0,0.6);
         }}
         
         [data-theme="light"] {{
-            --bg: #f0f4f8;
+            --bg: #f5f5fa;
             --surface: #ffffff;
-            --surface2: #e8edf4;
-            --border: #d0d8e0;
-            --text: #1a2332;
-            --text2: #5a6a82;
-            --text3: #9aabbf;
+            --surface2: #ececf5;
+            --border: #d0d0dd;
+            --text: #1a1a2e;
+            --text2: #555577;
+            --text3: #9999bb;
             --shadow: 0 20px 60px rgba(0,0,0,0.08);
         }}
         
@@ -61,7 +61,7 @@ def home():
         }}
         
         .dashboard {{
-            max-width: 720px;
+            max-width: 640px;
             width: 100%;
             background: var(--surface);
             border: 1px solid var(--border);
@@ -252,16 +252,16 @@ def home():
 
     <!-- Header -->
     <div class="dash-header">
-        <div class="dash-title">⚡ <span>DevOps</span> Dashboard</div>
+        <div class="dash-title">🔥 <span>CI/CD</span> Pipeline</div>
         <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙 Sombre</button>
     </div>
 
     <!-- Status -->
     <div class="status-bar">
         <div class="status-dot"></div>
-        <span class="status-label">Status :</span>
-        <span class="status-value">Opérationnel</span>
-        <span style="margin-left:auto; color:var(--text3);">v{version}</span>
+        <span class="status-label">Statut :</span>
+        <span class="status-value">Déployé</span>
+        <span style="margin-left:auto; color:var(--text3);">{version}</span>
     </div>
 
     <!-- Metrics -->
@@ -282,7 +282,7 @@ def home():
 
     <!-- Log -->
     <div class="log-box" id="log">
-        <div class="line"><span class="dim">$</span> <span class="cmd">docker pull devops-app:{version}</span></div>
+        <div class="line"><span class="dim">$</span> <span class="cmd">docker pull pipeline-app:{version}</span></div>
     </div>
 
     <!-- Pipeline -->
@@ -300,8 +300,8 @@ def home():
 
     <!-- Footer -->
     <div class="footer">
-        <span>🔄 auto-deploy · jenkins + docker</span>
-        <span class="tag">v<span>{version}</span></span>
+        <span>🔄 auto-deploy · Jenkins + Docker</span>
+        <span class="tag"><span>{version}</span></span>
     </div>
 
 </div>
@@ -330,9 +330,9 @@ def home():
     // Terminal animation
     const log = document.getElementById('log');
     const lines = [
-        {{ delay: 800, html: '<div class="line"><span class="ok">✔</span> <span class="dim">Image pulled (142 MB)</span></div>' }},
-        {{ delay: 1600, html: '<div class="line"><span class="dim">$</span> <span class="cmd">docker run -p 8000:8000 devops-app</span></div>' }},
-        {{ delay: 2400, html: '<div class="line"><span class="ok">✔</span> <span class="dim">Container started [id: b7f3a1]</span></div>' }},
+        {{ delay: 800, html: '<div class="line"><span class="ok">✔</span> <span class="dim">Image pulled (145 MB)</span></div>' }},
+        {{ delay: 1600, html: '<div class="line"><span class="dim">$</span> <span class="cmd">docker run -p 8000:8000 pipeline-app</span></div>' }},
+        {{ delay: 2400, html: '<div class="line"><span class="ok">✔</span> <span class="dim">Container started [id: c8f4b2]</span></div>' }},
         {{ delay: 3200, html: '<div class="line"><span class="ok">✔</span> <span class="dim">Health check passed — port 8000 OK</span></div>' }},
         {{ delay: 4000, html: '<div class="line"><span class="ok">✔</span> Deployment <strong style="color:var(--green)">SUCCESS</strong></div>' }},
         {{ delay: 4600, html: '<div class="line"><span class="dim">$</span> <span class="cursor"></span></div>' }},
